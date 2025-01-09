@@ -5,12 +5,12 @@ def create_table():
     conn = connect()
     cursor = conn.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Books (
-            book_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            title TEXT NOT NULL,
-            author_id INTEGER,
-            genre_id INTEGER NOT NULL,
-            release_year INTEGER NOT NULL
+        CREATE TABLE IF NOT EXISTS Authors (
+            author_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            name TEXT NOT NULL,
+            surname TEXT NOT NULL,
+            birth_date INTEGER NOT NULL,
+            nationality TEXT NOT NULL
         )
     ''')
     conn.commit()
@@ -21,7 +21,7 @@ def drop_table():
     conn = connect()
     cursor = conn.cursor()
     cursor.execute('''
-        DROP TABLE IF EXISTS Books
+        DROP TABLE IF EXISTS Authors
     ''')
     conn.commit()
     conn.close()
