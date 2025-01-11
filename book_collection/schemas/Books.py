@@ -1,4 +1,4 @@
-from config.database import connect
+from ..database.db import connect
 
 
 def create_table():

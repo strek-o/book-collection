@@ -1,4 +1,4 @@
-from config.database import connect
+from .db import connect
 
 
 def create_author(name, surname, birth_date, nationality):
