@@ -7,7 +7,7 @@ def create_table():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Genres (
             genre_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            genre TEXT NOT NULL
+            name TEXT NOT NULL
         )
     ''')
     conn.commit()

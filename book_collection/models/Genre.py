@@ -3,4 +3,4 @@ class Genre:
         self.name = name
 
     def __repr__(self):
-        return f"Genre(name='{self.name}')"
+        return f"\nGenre (\n\tname='{self.name}'\n)\n"

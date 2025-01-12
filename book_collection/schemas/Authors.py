@@ -9,7 +9,7 @@ def create_table():
             author_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             name TEXT NOT NULL,
             surname TEXT NOT NULL,
-            birth_date INTEGER NOT NULL,
+            birth_date TEXT NOT NULL,
             nationality TEXT NOT NULL
         )
     ''')

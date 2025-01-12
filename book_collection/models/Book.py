@@ -6,5 +6,5 @@ class Book:
         self.release_year = release_year
 
     def __repr__(self):
-        return (f"Book(title='{self.title}', author_id='{self.author_id}',"
-                f"genre_id='{self.genre_id}', release_year={self.release_year})")
+        return (f"\nBook (\n\ttitle='{self.title}',\n\tauthor_id='{self.author_id}',\n\t"
+                f"genre_id='{self.genre_id}',\n\trelease_year={self.release_year}\n)\n")
