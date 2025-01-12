@@ -11,7 +11,9 @@ def update_author(author_id, name=None, surname=None, birth_date=None, nationali
     cursor.execute("SELECT COUNT(*) FROM Authors WHERE author_id = ?", (author_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nAuthor with ID {author_id} does not exist.\n")
+        print(f"\nError:\tAuthor with ID {author_id} does not exist.\n"
+              "\tPlease enter a valid author ID.\n")
+        return False
 
     if name:
         updates.append("name = ?")
@@ -33,6 +35,7 @@ def update_author(author_id, name=None, surname=None, birth_date=None, nationali
 
     conn.commit()
     conn.close()
+    return True
 
 
 def update_book(book_id, title=None, author_id=None, genre_id=None, release_year=None):
@@ -45,19 +48,25 @@ def update_book(book_id, title=None, author_id=None, genre_id=None, release_year
     cursor.execute("SELECT COUNT(*) FROM Books WHERE book_id = ?", (book_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nBook with ID {book_id} does not exist.\n")
+        print(f"\nError:\tBook with ID {book_id} does not exist.\n"
+              "\tPlease enter a valid book ID.\n")
+        return False
 
     if author_id:
         cursor.execute("SELECT COUNT(*) FROM Authors WHERE author_id = ?", (author_id,))
         if cursor.fetchone()[0] == 0:
             conn.close()
-            raise ValueError(f"\n\nAuthor with id {author_id} does not exist.\n")
+            print(f"\nError:\tAuthor with ID {author_id} does not exist.\n"
+                  "\tPlease enter a valid author ID.\n")
+            return False
 
     if genre_id:
         cursor.execute("SELECT COUNT(*) FROM Genres WHERE genre_id = ?", (genre_id,))
         if cursor.fetchone()[0] == 0:
             conn.close()
-            raise ValueError(f"\n\nGenre with ID {genre_id} does not exist.\n")
+            print(f"\nError:\tGenre with ID {genre_id} does not exist.\n"
+                  "\tPlease enter a valid genre ID.\n")
+            return False
 
     if title:
         updates.append("title = ?")
@@ -79,6 +88,7 @@ def update_book(book_id, title=None, author_id=None, genre_id=None, release_year
 
     conn.commit()
     conn.close()
+    return True
 
 
 def update_genre(genre_id, name=None):
@@ -91,7 +101,9 @@ def update_genre(genre_id, name=None):
     cursor.execute("SELECT COUNT(*) FROM Genres WHERE genre_id = ?", (genre_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nGenre with ID {genre_id} does not exist.\n")
+        print(f"\nError:\tGenre with ID {genre_id} does not exist.\n"
+              "\tPlease enter a valid genre ID.\n")
+        return False
 
     if name:
         updates.append("name = ?")
@@ -104,3 +116,4 @@ def update_genre(genre_id, name=None):
 
     conn.commit()
     conn.close()
+    return True

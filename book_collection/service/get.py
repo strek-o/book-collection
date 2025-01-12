@@ -1,12 +1,15 @@
 from ..database.db import connect
 
 
-def read_authors(name=None, surname=None, nationality=None):
+def read_authors(author_id=None, name=None, surname=None, nationality=None):
     conn = connect()
     cursor = conn.cursor()
     query = "SELECT * FROM Authors WHERE 1=1"
     params = []
 
+    if author_id:
+        query += " AND author_id = ?"
+        params.append(author_id)
     if name:
         query += " AND name LIKE ?"
         params.append(f"%{name}%")
@@ -23,12 +26,15 @@ def read_authors(name=None, surname=None, nationality=None):
     return authors
 
 
-def read_books(title=None, author_id=None, genre_id=None, release_year=None):
+def read_books(book_id=None, title=None, author_id=None, genre_id=None, release_year=None):
     conn = connect()
     cursor = conn.cursor()
     query = "SELECT * FROM Books WHERE 1=1"
     params = []
 
+    if book_id:
+        query += " AND book_id = ?"
+        params.append(book_id)
     if title:
         query += " AND title LIKE ?"
         params.append(f"%{title}%")
@@ -48,12 +54,15 @@ def read_books(title=None, author_id=None, genre_id=None, release_year=None):
     return books
 
 
-def read_genres(name=None):
+def read_genres(genre_id=None, name=None):
     conn = connect()
     cursor = conn.cursor()
     query = "SELECT * FROM Genres WHERE 1=1"
     params = []
 
+    if genre_id:
+        query += " AND genre_id = ?"
+        params.append(genre_id)
     if name:
         query += " AND name LIKE ?"
         params.append(f"%{name}%")

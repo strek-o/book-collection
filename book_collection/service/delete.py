@@ -10,20 +10,25 @@ def delete_author(author_id):
     ''', (author_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nAuthor with ID {author_id} does not exist.\n")
+        print(f"\nError:\tAuthor with ID {author_id} does not exist.\n"
+              "\tPlease enter a valid author ID.\n")
+        return False
 
     cursor.execute('''
         SELECT COUNT(*) FROM Books WHERE author_id = ?
     ''', (author_id,))
     if cursor.fetchone()[0] > 0:
         conn.close()
-        raise ValueError(f"\n\nAuthor with ID {author_id} is assigned to at least one book and cannot be deleted.\n")
+        print(f"\nError:\tAuthor with ID {author_id} is assigned to\n"
+              "\tat least one book and cannot be deleted.\n")
+        return False
 
     cursor.execute('''
         DELETE FROM Authors WHERE author_id = ?
     ''', (author_id,))
     conn.commit()
     conn.close()
+    return True
 
 
 def delete_book(book_id):
@@ -35,13 +40,16 @@ def delete_book(book_id):
     ''', (book_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nBook with ID {book_id} does not exist.\n")
+        print(f"\nError:\tBook with ID {book_id} does not exist.\n"
+              "\tPlease enter a valid book ID.\n")
+        return False
 
     cursor.execute('''
         DELETE FROM Books WHERE book_id = ?
     ''', (book_id,))
     conn.commit()
     conn.close()
+    return True
 
 
 def delete_genre(genre_id):
@@ -53,17 +61,22 @@ def delete_genre(genre_id):
     ''', (genre_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nGenre with ID {genre_id} does not exist.\n")
+        print(f"\nError:\tGenre with ID {genre_id} does not exist.\n"
+              "\tPlease enter a valid genre ID.\n")
+        return False
 
     cursor.execute('''
         SELECT COUNT(*) FROM Books WHERE genre_id = ?
     ''', (genre_id,))
     if cursor.fetchone()[0] > 0:
         conn.close()
-        raise ValueError(f"\n\nGenre with ID {genre_id} is assigned to at least one book and cannot be deleted.\n")
+        print(f"\nError:\tGenre with ID {genre_id} is assigned to\n"
+              "\tat least one book and cannot be deleted.\n")
+        return False
 
     cursor.execute('''
         DELETE FROM Genres WHERE genre_id = ?
     ''', (genre_id,))
     conn.commit()
     conn.close()
+    return True

@@ -10,6 +10,7 @@ def create_author(name, surname, birth_date, nationality):
     ''', (name, surname, birth_date, nationality))
     conn.commit()
     conn.close()
+    return True
 
 
 def create_book(title, author_id, genre_id, release_year):
@@ -21,14 +22,18 @@ def create_book(title, author_id, genre_id, release_year):
     ''', (author_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nAuthor with ID {author_id} does not exist.\n")
+        print(f"\nError:\tAuthor with ID {author_id} does not exist.\n"
+              "\tPlease enter a valid author ID.\n")
+        return False
 
     cursor.execute(''' 
         SELECT COUNT(*) FROM Genres WHERE genre_id = ?
     ''', (genre_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"\n\nGenre with ID {genre_id} does not exist.\n")
+        print(f"\nError:\tGenre with ID {genre_id} does not exist.\n"
+              "\tPlease enter a valid genre ID.\n")
+        return False
 
     cursor.execute(''' 
         INSERT INTO Books (title, author_id, genre_id, release_year)
@@ -36,6 +41,7 @@ def create_book(title, author_id, genre_id, release_year):
     ''', (title, author_id, genre_id, release_year))
     conn.commit()
     conn.close()
+    return True
 
 
 def create_genre(name):
@@ -47,3 +53,4 @@ def create_genre(name):
     ''', (name,))
     conn.commit()
     conn.close()
+    return True
