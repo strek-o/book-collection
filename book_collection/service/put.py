@@ -11,7 +11,7 @@ def update_author(author_id, name=None, surname=None, birth_date=None, nationali
     cursor.execute("SELECT COUNT(*) FROM Authors WHERE author_id = ?", (author_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"Author with ID {author_id} does not exist.")
+        raise ValueError(f"\n\nAuthor with ID {author_id} does not exist.\n")
 
     if name:
         updates.append("name = ?")
@@ -45,19 +45,19 @@ def update_book(book_id, title=None, author_id=None, genre_id=None, release_year
     cursor.execute("SELECT COUNT(*) FROM Books WHERE book_id = ?", (book_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"Book with ID {book_id} does not exist.")
+        raise ValueError(f"\n\nBook with ID {book_id} does not exist.\n")
 
     if author_id:
         cursor.execute("SELECT COUNT(*) FROM Authors WHERE author_id = ?", (author_id,))
         if cursor.fetchone()[0] == 0:
             conn.close()
-            raise ValueError(f"Author with id {author_id} does not exist.")
+            raise ValueError(f"\n\nAuthor with id {author_id} does not exist.\n")
 
     if genre_id:
         cursor.execute("SELECT COUNT(*) FROM Genres WHERE genre_id = ?", (genre_id,))
         if cursor.fetchone()[0] == 0:
             conn.close()
-            raise ValueError(f"Genre with ID {genre_id} does not exist.")
+            raise ValueError(f"\n\nGenre with ID {genre_id} does not exist.\n")
 
     if title:
         updates.append("title = ?")
@@ -91,7 +91,7 @@ def update_genre(genre_id, name=None):
     cursor.execute("SELECT COUNT(*) FROM Genres WHERE genre_id = ?", (genre_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"Genre with ID {genre_id} does not exist.")
+        raise ValueError(f"\n\nGenre with ID {genre_id} does not exist.\n")
 
     if name:
         updates.append("name = ?")

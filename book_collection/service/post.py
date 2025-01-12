@@ -21,14 +21,14 @@ def create_book(title, author_id, genre_id, release_year):
     ''', (author_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"Author with ID {author_id} does not exist.")
+        raise ValueError(f"\n\nAuthor with ID {author_id} does not exist.\n")
 
     cursor.execute(''' 
         SELECT COUNT(*) FROM Genres WHERE genre_id = ?
     ''', (genre_id,))
     if cursor.fetchone()[0] == 0:
         conn.close()
-        raise ValueError(f"Genre with ID {genre_id} does not exist.")
+        raise ValueError(f"\n\nGenre with ID {genre_id} does not exist.\n")
 
     cursor.execute(''' 
         INSERT INTO Books (title, author_id, genre_id, release_year)
