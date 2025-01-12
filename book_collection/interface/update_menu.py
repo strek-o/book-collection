@@ -1,6 +1,6 @@
 from ..models import *
 from ..service import *
-from ..utils import get_date, validate_date, get_year, get_author
+from ..utils import get_date, validate_date, get_year, get_author, get_genre
 
 
 def update_menu():
@@ -41,8 +41,8 @@ def update_menu():
         elif action == '2':
             book_id = int(input("Enter book ID: "))
             title = input("Enter title: ")
-            author_id = int(input("Enter author ID: "))
-            genre_id = int(input("Enter genre ID: "))
+            author_id = get_author()
+            genre_id = get_genre()
             release_year = get_year()
 
             current_book = read_books(book_id=book_id)[0]
@@ -65,7 +65,7 @@ def update_menu():
 
 
         elif action == '3':
-            genre_id = int(input("Enter genre ID: "))
+            genre_id = get_genre()
             name = input("Enter name: ")
             current_genre = read_genres(genre_id)[0]
             updated_genre = Genre(name or current_genre.name)
