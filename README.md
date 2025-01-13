@@ -73,15 +73,15 @@ This project is a simple CRUD application that uses `sqlite3` module to manage a
 
 - `schemas/` - Defines schema structures used to standardize database operations.
 
-- `service` - Implements business logic for CRUD operations with scripts like **get.py**, **post.py**, **put.py**, and **delete.py**.
+- `service/` - Implements business logic for CRUD operations with scripts like **get.py**, **post.py**, **put.py**, and **delete.py**.
 
 ### Database Models
 
-- Author - Represents an author entity with attributes: `name`, `surname`, `birth_date`, and `nationality`.
+- **Author** - Represents an author entity with attributes: `name`, `surname`, `birth_date`, and `nationality`.
 
-- Book - Represents a book entity with attributes like `title`, `author_id`, `genre_id`, `release_year`.
+- **Book** - Represents a book entity with attributes like `title`, `author_id`, `genre_id`, `release_year`.
 
-- Genre - Represents a genre entity with `name` attribute.
+- **Genre** - Represents a genre entity with `name` attribute.
 
 # Setup
 
