@@ -1,6 +1,6 @@
 import re
 from datetime import datetime
-from ..service import read_authors, read_genres
+from ..service import read_authors, read_genres, read_books
 import os
 
 
@@ -34,7 +34,7 @@ def validate_date(birth_date):
 def get_year():
     while True:
         try:
-            release_year = int(input("Enter release year: "))
+            release_year = int(input("Enter release year <YYYY>: "))
             current_year = datetime.today().year
             if 1000 <= release_year <= current_year:
                 break
@@ -60,6 +60,20 @@ def get_author():
     return author_id
 
 
+def get_book():
+    while True:
+        try:
+            book_id = int(input("Enter book ID: "))
+            if len(read_books(book_id)) > 0:
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("\nError:\tInvalid book ID.\n"
+                  "\tPlease enter a valid ID.\n")
+    return book_id
+
+
 def get_genre():
     while True:
         try:
@@ -79,3 +93,47 @@ def clear():
         os.system('cls')
     else:
         os.system('clear')
+
+
+def get_name():
+    while True:
+        name = input("Enter name: ")
+        if name:
+            break
+        else:
+            print("\nError:\tName cannot be empty.\n"
+                  "\tPlease enter a valid name.\n")
+    return name
+
+
+def get_surname():
+    while True:
+        surname = input("Enter surname: ")
+        if surname:
+            break
+        else:
+            print("\nError:\tSurname cannot be empty.\n"
+                  "\tPlease enter a valid surname.\n")
+    return surname
+
+
+def get_nationality():
+    while True:
+        nationality = input("Enter nationality: ")
+        if nationality:
+            break
+        else:
+            print("\nError:\tNationality cannot be empty.\n"
+                  "\tPlease enter a valid nationality.\n")
+    return nationality
+
+
+def get_title():
+    while True:
+        title = input("Enter title: ")
+        if title:
+            break
+        else:
+            print("\nError:\tTitle cannot be empty.\n"
+                  "\tPlease enter a valid title.\n")
+    return title

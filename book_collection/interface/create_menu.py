@@ -1,6 +1,7 @@
 from ..models import *
 from ..service import *
-from ..utils import get_date, validate_date, get_year, get_author, get_genre
+from ..utils import get_date, validate_date, get_year, get_author, get_book, get_genre, clear, get_name, get_surname, \
+    get_nationality, get_title
 
 
 def create_menu():
@@ -13,11 +14,11 @@ def create_menu():
         action = input("Choose an option <1-4>: ")
 
         if action == '1':
-            name = input("Enter name: ")
-            surname = input("Enter surname: ")
+            name = get_name()
+            surname = get_surname()
             birth_date = get_date()
             birth_date = validate_date(birth_date)
-            nationality = input("Enter nationality: ")
+            nationality = get_nationality()
 
             a = Author(name, surname, birth_date, nationality)
             no_err = create_author(a.name, a.surname, a.birth_date, a.nationality)
@@ -26,7 +27,7 @@ def create_menu():
             break
 
         elif action == '2':
-            title = input("Enter title: ")
+            title = get_title()
             author_id = get_author()
             genre_id = get_genre()
             release_year = get_year()
@@ -38,7 +39,7 @@ def create_menu():
             break
 
         elif action == '3':
-            name = input("Enter name: ")
+            name = get_name()
             g = Genre(name)
             no_err = create_genre(g.name)
             if no_err:
