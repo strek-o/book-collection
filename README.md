@@ -23,44 +23,45 @@ This project is a simple CRUD application that uses `sqlite3` module to manage a
 |   README.md
 |
 \---book_collection
-   +---data
-   |       .gitkeep
-   |       collection.db
-   |
-   +---database
-   |       db.py
-   |       __init__.py
-   |
-   +---interface
-   |       create_menu.py
-   |       delete_menu.py
-   |       main_menu.py
-   |       read_menu.py
-   |       update_menu.py
-   |       __init__.py
-   |
-   +---models
-   |       Author.py
-   |       Book.py
-   |       Genre.py
-   |       __init__.py
-   |
-   +---schemas
-   |       Authors.py
-   |       Books.py
-   |       Genres.py
-   |       __init__.py
-   |
-   +---service
-   |       delete.py
-   |       get.py
-   |       post.py
-   |       put.py
-   |       __init__.py
-   |
-   \---utils
-           input.py
-           __init__.py
+    +---data
+    |       .gitkeep
+    |       collection.db
+    |
+    +---database
+    |       db.py
+    |       __init__.py
+    |
+    +---interface
+    |       create_menu.py
+    |       delete_menu.py
+    |       main_menu.py
+    |       read_menu.py
+    |       search_menu.py
+    |       update_menu.py
+    |       __init__.py
+    |
+    +---models
+    |       Author.py
+    |       Book.py
+    |       Genre.py
+    |       __init__.py
+    |
+    +---schemas
+    |       Authors.py
+    |       Books.py
+    |       Genres.py
+    |       __init__.py
+    |
+    +---service
+    |       delete.py
+    |       get.py
+    |       post.py
+    |       put.py
+    |       __init__.py
+    |
+    \---utils
+            user_input.py
+            __init__.py
 ```
 
 ### Key Components
