@@ -1,7 +1,45 @@
 from ..database.db import connect
 
 
-def read_authors(author_id=None, name=None, surname=None, nationality=None):
+def read_authors():
+    conn = connect()
+    cursor = conn.cursor()
+    query = "SELECT * FROM Authors"
+    cursor.execute(query)
+    authors = cursor.fetchall()
+    conn.close()
+    return authors
+
+
+def read_books():
+    conn = connect()
+    cursor = conn.cursor()
+    query = '''
+        SELECT 
+            Books.book_id, Books.title, Authors.name AS author_name, 
+            Authors.surname AS author_surname, Genres.name AS genre_name, 
+            Books.release_year
+        FROM Books
+        INNER JOIN Authors ON Books.author_id = Authors.author_id
+        INNER JOIN Genres ON Books.genre_id = Genres.genre_id
+    '''
+    cursor.execute(query)
+    books = cursor.fetchall()
+    conn.close()
+    return books
+
+
+def read_genres():
+    conn = connect()
+    cursor = conn.cursor()
+    query = "SELECT * FROM Genres"
+    cursor.execute(query)
+    genres = cursor.fetchall()
+    conn.close()
+    return genres
+
+
+def search_authors(author_id=None, name=None, surname=None, nationality=None):
     conn = connect()
     cursor = conn.cursor()
     query = "SELECT * FROM Authors WHERE 1=1"
@@ -26,7 +64,8 @@ def read_authors(author_id=None, name=None, surname=None, nationality=None):
     return authors
 
 
-def read_books(book_id=None, title=None, author_id=None, genre_id=None, release_year=None):
+def search_books(book_id=None, title=None, author_id=None, genre_id=None,
+                 release_year=None):
     conn = connect()
     cursor = conn.cursor()
     query = "SELECT * FROM Books WHERE 1=1"
@@ -54,7 +93,7 @@ def read_books(book_id=None, title=None, author_id=None, genre_id=None, release_
     return books
 
 
-def read_genres(genre_id=None, name=None):
+def search_genres(genre_id=None, name=None):
     conn = connect()
     cursor = conn.cursor()
     query = "SELECT * FROM Genres WHERE 1=1"

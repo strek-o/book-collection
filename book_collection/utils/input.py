@@ -1,13 +1,14 @@
 import re
 from datetime import datetime
-from ..service import read_authors, read_genres, read_books
+from ..service import search_authors, search_genres, search_books
 import os
 
 
 def get_date():
     while True:
         birth_date = input("Enter birth date <DD/MM/YYYY>: ")
-        if re.match(r"^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$", birth_date):
+        if re.match(r"^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$",
+                    birth_date):
             break
         else:
             print("\nError:\tInvalid date.\n"
@@ -50,7 +51,7 @@ def get_author():
     while True:
         try:
             author_id = int(input("Enter author ID: "))
-            if len(read_authors(author_id)) > 0:
+            if len(search_authors(author_id)) > 0:
                 break
             else:
                 raise ValueError
@@ -64,7 +65,7 @@ def get_book():
     while True:
         try:
             book_id = int(input("Enter book ID: "))
-            if len(read_books(book_id)) > 0:
+            if len(search_books(book_id)) > 0:
                 break
             else:
                 raise ValueError
@@ -78,7 +79,7 @@ def get_genre():
     while True:
         try:
             genre_id = int(input("Enter genre ID: "))
-            if len(read_genres(genre_id)) > 0:
+            if len(search_genres(genre_id)) > 0:
                 break
             else:
                 raise ValueError

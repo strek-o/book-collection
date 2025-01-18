@@ -6,5 +6,7 @@ class Author:
         self.nationality = nationality
 
     def __repr__(self):
-        return (f"\nAuthor (\n\tname='{self.name}',\n\tsurname='{self.surname}',\n\t"
-                f"birth_date='{self.birth_date},\n\tnationality='{self.nationality}\n)\n")
+        return (f"\nAuthor (\n\tname='{self.name}',"
+                f"\n\tsurname='{self.surname}',"
+                f"\n\tbirth_date='{self.birth_date},"
+                f"\n\tnationality='{self.nationality}\n)\n")

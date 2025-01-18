@@ -21,7 +21,7 @@ def update_menu():
             birth_date = validate_date(birth_date)
             nationality = get_nationality()
 
-            current_author = read_authors(author_id=author_id)[0]
+            current_author = search_authors(author_id=author_id)[0]
             updated_author = Author(
                 name or current_author.name,
                 surname or current_author.surname,
@@ -44,14 +44,14 @@ def update_menu():
             title = get_title()
             author_id = get_author()
             genre_id = get_genre()
-            release_year = get_year()
+            new_year = get_year()
 
-            current_book = read_books(book_id=book_id)[0]
+            current_book = search_books(book_id=book_id)[0]
             updated_book = Book(
                 title or current_book.title,
                 int(author_id) if author_id else current_book.author_id,
                 int(genre_id) if genre_id else current_book.genre_id,
-                int(release_year) if release_year else current_book.release_year
+                int(new_year) if new_year else current_book.release_year
             )
             no_err = update_book(
                 book_id,
@@ -64,11 +64,10 @@ def update_menu():
                 print("\nOK:\tBook updated successfully.\n")
             break
 
-
         elif action == '3':
             genre_id = get_genre()
             name = get_name()
-            current_genre = read_genres(genre_id)[0]
+            current_genre = search_genres(genre_id)[0]
             updated_genre = Genre(name or current_genre.name)
             no_err = update_genre(genre_id, updated_genre.name)
             if no_err:

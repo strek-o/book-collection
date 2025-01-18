@@ -12,22 +12,22 @@ def delete_menu():
 
         if action == '1':
             author_id = int(input("Enter author ID: "))
-            no_err = delete_author(author_id)
-            if no_err:
+            res = delete_author(author_id)
+            if res:
                 print("\nOK:\tAuthor deleted successfully.\n")
             break
 
         elif action == '2':
             book_id = int(input("Enter book ID: "))
-            no_err = delete_book(book_id)
-            if no_err:
+            res = delete_book(book_id)
+            if res:
                 print("\nOK:\tBook deleted successfully.\n")
             break
 
         elif action == '3':
             genre_id = int(input("Enter genre ID: "))
-            no_err = delete_genre(genre_id)
-            if no_err:
+            res = delete_genre(genre_id)
+            if res:
                 print("\nOK:\tGenre deleted successfully.\n")
             break
 

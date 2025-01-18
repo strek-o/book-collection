@@ -21,8 +21,8 @@ def create_menu():
             nationality = get_nationality()
 
             a = Author(name, surname, birth_date, nationality)
-            no_err = create_author(a.name, a.surname, a.birth_date, a.nationality)
-            if no_err:
+            res = create_author(a.name, a.surname, a.birth_date, a.nationality)
+            if res:
                 print("\nOK:\tAuthor created successfully.\n")
             break
 
@@ -33,16 +33,16 @@ def create_menu():
             release_year = get_year()
 
             b = Book(title, author_id, genre_id, release_year)
-            no_err = create_book(b.title, b.author_id, b.genre_id, b.release_year)
-            if no_err:
+            res = create_book(b.title, b.author_id, b.genre_id, b.release_year)
+            if res:
                 print("\nOK:\tBook created successfully.\n")
             break
 
         elif action == '3':
             name = get_name()
             g = Genre(name)
-            no_err = create_genre(g.name)
-            if no_err:
+            res = create_genre(g.name)
+            if res:
                 print("\nOK:\tGenre created successfully.\n")
             break
 
